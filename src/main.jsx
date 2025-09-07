@@ -8,7 +8,7 @@ import { UserProvider } from './components/UserProvider.jsx'
 createRoot(document.getElementById('root')).render(
 
   <UserProvider>
-    <BrowserRouter basename='/my_react_app' >
+    <BrowserRouter  >
       <App />
     </BrowserRouter>
   </UserProvider>,
