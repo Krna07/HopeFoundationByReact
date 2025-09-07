@@ -44,9 +44,10 @@ export default function HopeFoundation() {
             </div>
           )}
 
-          <a href="dashboard.html" className="profile-icon">
-            <img src="user.png" alt="User" />
-          </a>
+          {/* <a href="dashboard.html" className="profile-icon">
+            
+          </a> */}
+          <Link to="/dashboard" > <div className="profile-icon"></div> </Link>
         </div>
       </header>
 

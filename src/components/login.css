@@ -35,3 +35,66 @@ input{
     width: 50vh;
     margin: 2vh;
 }
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Tablets & small laptops */
+@media (max-width: 1024px) {
+  .loginpage form {
+    width: 80%;
+    max-width: 500px;
+    padding: 20px;
+  }
+
+  .email,
+  .password {
+    width: 40vh;
+  }
+}
+
+/* Mobile devices (portrait tablets & large phones) */
+@media (max-width: 768px) {
+  .loginpage {
+    padding: 1rem;
+    border: none; /* remove border for cleaner look on small screens */
+  }
+
+  .loginpage form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+  }
+
+  .email,
+  .password {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  input {
+    margin: 2%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+  .loginpage form {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .email,
+  .password {
+    width: 100%;
+    margin: 0.8rem 0;
+  }
+
+  input {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+}
