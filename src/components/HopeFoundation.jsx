@@ -10,11 +10,11 @@ export default function HopeFoundation() {
       <header className="header">
         <h1>1% Impact</h1>
         <div className="nav">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="causes.html">Causes</a>
-          <a href="gotDonatePage.html">Donate</a>
-          <a href="contacts.html">Contact</a>
+          <Link to={"/"} >Home</Link>
+          <Link to={"/about"} >About</Link>
+          <Link to={"/causes"} >Causes</Link>
+          <Link to={"/donate"} >Donate</Link>
+          <Link to={"/contact"} >Contact</Link>
         </div>
         <div className="auth-buttons">
           <a href="starting.html">
@@ -56,7 +56,7 @@ export default function HopeFoundation() {
           <h2>Together, We Can Make a Difference</h2>
           <p>Your small help can bring big change to someone's life.</p>
           <a href="DonatePage.html">
-            <button>Donate Now</button>
+            <Link to={"/contact"}><button>Donate Now</button></Link>
           </a>
         </div>
       </section>

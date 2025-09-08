@@ -441,3 +441,390 @@ html, body {
     width: 90%;
   }
 }
+
+
+/* cause.css */
+
+/* --- General Setup --- */
+.causes-wrapper {
+  background-color: #f7f9fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+/* --- Header Section --- */
+.causes-header-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.causes-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+}
+
+.causes-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* --- Grid Layout --- */
+.causes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Card Styling --- */
+.causes-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 6px solid; /* Placeholder for theme color */
+  position: relative;
+  overflow: hidden;
+}
+
+.causes-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.causes-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.causes-card:hover .causes-icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.causes-card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.75rem 0;
+}
+
+.causes-card-desc {
+  color: #718096;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+}
+
+.causes-btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 50px; /* Pill shape */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.causes-card:hover .causes-btn {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Vibrant Color Themes using :nth-child --- */
+
+/* 1. Feed the Hungry */
+.causes-card:nth-child(6n + 1) { border-color: #f59e0b; }
+.causes-card:nth-child(6n + 1) .causes-btn { background: linear-gradient(45deg, #f59e0b, #ef4444); }
+
+/* 2. Educate a Child */
+.causes-card:nth-child(6n + 2) { border-color: #3b82f6; }
+.causes-card:nth-child(6n + 2) .causes-btn { background: linear-gradient(45deg, #3b82f6, #6366f1); }
+
+/* 3. Medical Aid */
+.causes-card:nth-child(6n + 3) { border-color: #14b8a6; }
+.causes-card:nth-child(6n + 3) .causes-btn { background: linear-gradient(45deg, #14b8a6, #22d3ee); }
+
+/* 4. Plant Trees */
+.causes-card:nth-child(6n + 4) { border-color: #22c55e; }
+.causes-card:nth-child(6n + 4) .causes-btn { background: linear-gradient(45deg, #22c55e, #84cc16); }
+
+/* 5. Clean Water */
+.causes-card:nth-child(6n + 5) { border-color: #0ea5e9; }
+.causes-card:nth-child(6n + 5) .causes-btn { background: linear-gradient(45deg, #0ea5e9, #60a5fa); }
+
+/* 6. Support Shelters */
+.causes-card:nth-child(6n + 6) { border-color: #8b5cf6; }
+.causes-card:nth-child(6n + 6) .causes-btn { background: linear-gradient(45deg, #8b5cf6, #d946ef); }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .causes-title {
+    font-size: 2.5rem;
+  }
+  .causes-grid {
+    padding: 3rem 1rem;
+    gap: 1.5rem;
+  }
+}
+
+
+
+/* DONATION */
+
+.donation-card {
+      background-color: #ffffff;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2.5rem 3rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border-top: 8px solid;
+      border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+    }
+
+    .donation-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0 0 2.5rem 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* --- Section & Label Styling --- */
+    .donation-section {
+      margin-bottom: 2rem;
+    }
+
+    .donation-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin: 0 0 0.75rem 0;
+    }
+
+    /* --- Input & Display Styling --- */
+    .donation-input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box; /* Ensures padding doesn't affect width */
+      margin-top: 0.5rem;
+    }
+
+    .donation-input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+
+    .donation-display {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f4f6ff;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      color: #434190;
+      font-size: 1.1rem;
+    }
+
+    /* --- Button Group Styling --- */
+    .donation-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .donation-option,
+    .donation-frequency {
+      flex-grow: 1;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      background-color: #f8fafc;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #4a5568;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .donation-option:hover,
+    .donation-frequency:hover {
+      border-color: #c4cff0;
+      background-color: #f4f6ff;
+    }
+
+    /* --- Grid for Selectable Items --- */
+    .donation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+    }
+
+    .donation-item {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+    }
+
+    .donation-item p {
+      margin: 0.5rem 0 0 0;
+      font-weight: 600;
+      color: #4a5568;
+    }
+
+    .donation-item img {
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .donation-item:hover {
+      transform: translateY(-4px);
+      border-color: #a3bffa;
+    }
+
+    .donation-item:hover img {
+      opacity: 1;
+    }
+
+    /* --- Active State Styling (changed from .selected) --- */
+    .donation-frequency.active,
+    .donation-item.active {
+      border-color: #667eea;
+      background-color: #f4f6ff;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .donation-item.active p {
+      color: #434190;
+    }
+
+    /* --- Final Donate Button --- */
+    .donation-submit {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .donation-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(118, 75, 162, 0.25);
+    }
+
+
+
+    /* CONTACT */
+
+
+       .contact-container {
+      background-color: #ffffff;
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2.5rem 3rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border-top: 8px solid;
+      border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+      overflow: hidden; /* To contain header background */
+    }
+
+    .contact-container__header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-container__header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* --- Form Styling --- */
+    .contact-container__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-container__input,
+    .contact-container__textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box; /* Ensures padding doesn't affect width */
+    }
+    
+    .contact-container__textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .contact-container__input:focus,
+    .contact-container__textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+
+    /* --- Submit Button Styling --- */
+    .contact-container__button {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-container__button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(118, 75, 162, 0.25);
+    }
