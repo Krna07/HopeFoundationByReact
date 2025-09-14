@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import "../App.css";
+import { UserContext } from "./UserProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function HopeFoundation() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const {userData} = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
     <div>
       <header className="header">
-        <h1>1% Impact</h1>
+        <h1 className="logo" ></h1>
         <div className="nav">
           <Link to={"/"} >Home</Link>
           <Link to={"/about"} >About</Link>
@@ -17,13 +21,9 @@ export default function HopeFoundation() {
           <Link to={"/contact"} >Contact</Link>
         </div>
         <div className="auth-buttons">
-          <a href="starting.html">
-            <button>Back To Start</button>
-          </a>
-          <a href="login.html">
-            <Link to="/SignUp"><button>Login/SignUp</button></Link>
-          </a>
-
+          <Link to={"/start"}><button>Start</button></Link>
+          <Link to="/SignUp"><button>SignUp</button></Link>
+          <Link to={"/loginpage"}><button>{userData? "LogOut":"Login"}</button></Link>
           {/* Notification Bell */}
           <div
             className="notification-bell"
@@ -47,7 +47,9 @@ export default function HopeFoundation() {
           {/* <a href="dashboard.html" className="profile-icon">
             
           </a> */}
-          <Link to="/dashboard" > <div className="profile-icon"></div> </Link>
+         <div className="profile-icon" onClick={()=>{
+           navigate(`/dash/${userData?.data._id}`)
+         }}></div>
         </div>
       </header>
 
@@ -55,9 +57,7 @@ export default function HopeFoundation() {
         <div className="hero-content">
           <h2>Together, We Can Make a Difference</h2>
           <p>Your small help can bring big change to someone's life.</p>
-          <a href="DonatePage.html">
-            <Link to={"/contact"}><button>Donate Now</button></Link>
-          </a>
+            <Link to={"/donate"}><button>Donate Now</button></Link>
         </div>
       </section>
 

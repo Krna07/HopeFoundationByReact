@@ -34,11 +34,11 @@ const Login = () => {
         });
         const response = await res.json();
         // console.log("Data:", response);
+        
         reset()
       if(response.message == "Login successful!"){
-        setUserData(response)
-        navigate(`/${response.userId}`)
-      
+        // setUserData(response)
+        navigate(`/dash/${response?.data._id}`)
       }
         }catch(err){
             console.error("Error:", err);

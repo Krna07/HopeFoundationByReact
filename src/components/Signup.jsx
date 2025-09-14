@@ -17,6 +17,7 @@ const SignUp = () => {
   const Alldata = async(data) => {
     
     console.log("Submission on the way.....", data);
+    // localStorage.setItem("data",JSON.stringify(data))
     try {
       const res = await fetch("http://localhost:5000/logged",{
         method: "POST",

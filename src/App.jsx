@@ -7,6 +7,8 @@ import About from "./components/About";
 import Causes from "./components/Causes";
 import Donate from "./components/Donate";
 import Contact from "./components/Contact";
+import Start from "./components/Start";
+import Dash from "./components/Dash";
 
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
          <Route path="/causes" element={<Causes/>} />
          <Route path="/donate" element={<Donate/>} />
          <Route path="/contact" element={<Contact/>} />
-        <Route path="/:id" element={<HopeFoundation/>} />
+         <Route path="/start" element={<Start/>} />
+        <Route path="/dash/:id" element={<Dash/>} />
         <Route path="/loginpage" element={<Login/>}></Route>
       </Routes>
     </>
