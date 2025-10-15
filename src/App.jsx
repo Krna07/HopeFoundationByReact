@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/SignUp" element={<SignUp/>} />
          <Route path="/" element={<HopeFoundation />} />
+         <Route path="/HopeFoundationByReact/" element={<HopeFoundation />} />
          <Route path="/about" element={<About/>} />
          <Route path="/causes" element={<Causes/>} />
          <Route path="/donate" element={<Donate/>} />

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../App.css";
 import { UserContext } from "./UserProvider";
@@ -8,6 +8,22 @@ export default function HopeFoundation() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const {userData} = useContext(UserContext);
   const navigate = useNavigate();
+
+
+    useEffect(() => {
+    // Load Landbot script dynamically
+    const script = document.createElement("script");
+    script.src = "https://static.landbot.io/landbot-3/landbot-3.0.0.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      // Once loaded, initialize Landbot widget
+      window.myLandbot = new window.Landbot.Livechat({
+        configUrl: "https://landbot.online/v3/H-3180677-X6VWR831X6IPXMS3/index.json",
+      });
+    };
+  }, []);
 
   return (
     <div>
