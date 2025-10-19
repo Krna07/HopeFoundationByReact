@@ -1,101 +1,96 @@
-import React from 'react'
+import React from 'react';
 import { useForm } from "react-hook-form";
-import "./sign.css"
-import { Link } from 'react-router-dom';
-import { Navigate, useNavigate } from 'react-router-dom';
+import "./sign.css";
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      reset
-    } = useForm();
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm();
 
-  const Alldata = async(data) => {
-    
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  const Alldata = async (data) => {
     console.log("Submission on the way.....", data);
-    // localStorage.setItem("data",JSON.stringify(data))
+
     try {
-      const res = await fetch("http://localhost:5000/logged",{
+      const res = await fetch(`${API_URL}/logged`, {
         method: "POST",
         headers: {
-        "Content-Type": "application/json",
-      },
-        body: JSON.stringify(data), // send form data
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
+
       const response = await res.json();
       console.log("Data:", response);
-      reset()
-      if(response.message == "User logged successfully"){
-        navigate('/loginpage')
+
+      reset();
+
+      if (response.message === "User logged successfully") {
+        navigate("/loginpage");
+      } else {
+        alert(response.message || "Something went wrong!");
       }
+
     } catch (err) {
       console.error("Error:", err);
+      alert("Failed to connect to the server.");
     }
   };
 
-  let nameErrorMessage;
-  if (errors.name) {
-    nameErrorMessage = <p className="error">{errors.name.message}</p>;
-  } else {
-    nameErrorMessage = null; // nothing
-  }
-
-
-
-// errors = {
-//   name: {
-//     type: "required",
-//     message: "Name is required"
-//   }
-// }
-
-
   return (
     <div className="formbody">
-        <form onSubmit={handleSubmit(Alldata)} className="login-form">
-      {/* Name */}
-      <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          {...register("name", { required: "Name is required" })}
-        />
-        {nameErrorMessage}
-      </div>
+      <form onSubmit={handleSubmit(Alldata)} className="login-form">
 
-      {/* Email */}
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          {...register("email", { required: "Email is required" })}
-        />
-        {errors.email && <p className="error">{errors.email.message}</p>}
-      </div>
+        {/* Name */}
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            {...register("name", { required: "Name is required" })}
+          />
+          {errors.name && <p className="error">{errors.name.message}</p>}
+        </div>
 
-      {/* Password */}
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          {...register("password", { required: "Password is required" })}
-        />
-        {errors.password && <p className="error">{errors.password.message}</p>}
-      </div>
+        {/* Email */}
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            {...register("email", { required: "Email is required" })}
+          />
+          {errors.email && <p className="error">{errors.email.message}</p>}
+        </div>
 
-      {/* Submit Button */}
-      <button type="submit">SignUp</button>
-      <Link to="/loginpage"><button>Login</button></Link>
-    </form>
+        {/* Password */}
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            {...register("password", { required: "Password is required" })}
+          />
+          {errors.password && <p className="error">{errors.password.message}</p>}
+        </div>
+
+        {/* Buttons */}
+        <div className="button-group">
+          <button type="submit">Sign Up</button>
+          <Link to="/loginpage">
+            <button type="button">Login</button>
+          </Link>
+        </div>
+
+      </form>
     </div>
   );
-}
+};
 
 export default SignUp;
