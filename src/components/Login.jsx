@@ -34,7 +34,7 @@ const Login = () => {
 
       if (response.message === "Login successful!") {
         // ✅ Store user info globally if needed
-        setUserData(response.data);
+        setUserData(response);
 
         // ✅ Navigate to user dashboard
         navigate(`/dash/${response?.data?._id}`);

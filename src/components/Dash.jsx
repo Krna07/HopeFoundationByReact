@@ -9,18 +9,20 @@ const Dash = () => {
   const { id } = useParams();
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    if (!userData && id) {
+    if (id && (!userData || !userData.data)) {
       const fetchDataOnRefresh = async () => {
         try {
-          const res = await fetch('http://localhost:5000/dash', {
+          const res = await fetch(`${API_URL}/dash`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id }),
           });
           const response = await res.json();
           if (response.message === 'found') {
-            setUserData(response);
+            setUserData(response.data );
           } else {
             navigate('/loginpage');
           }
