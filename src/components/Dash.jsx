@@ -63,7 +63,7 @@ const Dash = () => {
     );
   }
 
-  return (
+   return (
     <>
       <header className="header">
         <h1 className="logo"></h1>
@@ -89,7 +89,7 @@ const Dash = () => {
             </div>
           )}
           <div className="profile-icon">
-            {/* <span>{userData.data.name}</span> */}
+            {/* <span>{userData.name}</span> */}
           </div>
         </div>
       </header>
@@ -102,16 +102,25 @@ const Dash = () => {
           <nav className="sidebar-nav">
             <ul>
               <li className="active">
-                <Link to={`/dash/${id}`}>Dashboard</Link>
+                <Link to={`/dash/${id}`}>📊 Dashboard</Link>
               </li>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to={`/profile/${id}`}>👤 Profile</Link>
               </li>
               <li>
-                <Link to="/donations">My Donations</Link>
+                <Link to={`/analytics/${id}`}>📈 Analytics</Link>
               </li>
               <li>
-                <Link to="/settings">Settings</Link>
+                <Link to={`/donations/${id}`}>💝 My Donations</Link>
+              </li>
+              <li>
+                <Link to={`/impact/${id}`}>🎯 Impact Tracker</Link>
+              </li>
+              <li>
+                <Link to="/donate">💰 Donate Now</Link>
+              </li>
+              <li>
+                <Link to="/settings">⚙️ Settings</Link>
               </li>
             </ul>
           </nav>
@@ -124,7 +133,7 @@ const Dash = () => {
 
         <main className="dashboard-main">
           <header className="dashboard-header">
-            <h1>Welcome back, {userData.data.name}!</h1>
+            <h1>Welcome back, {userData?.data.name}!</h1>
             <p>Here's a summary of your impactful contributions.</p>
           </header>
 
@@ -215,5 +224,7 @@ const Dash = () => {
 };
 
 export default Dash;
+
+
 
 

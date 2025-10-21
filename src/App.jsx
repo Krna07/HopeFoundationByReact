@@ -9,6 +9,9 @@ import Donate from "./components/Donate";
 import Contact from "./components/Contact";
 import Start from "./components/Start";
 import Dash from "./components/Dash";
+import Analytics from "./components/Analytics";
+import Profile from "./components/Profile";
+
 
 
 function App() {
@@ -25,6 +28,12 @@ function App() {
          <Route path="/contact" element={<Contact/>} />
          <Route path="/start" element={<Start/>} />
         <Route path="/dash/:id" element={<Dash/>} />
+        <Route path="/profile/:id" element={<Profile/>} />
+        <Route path="/analytics/:id" element={<Analytics/>} />
+        <Route path="/donations/:id" element={<Dash/>} />
+        <Route path="/impact/:id" element={<Dash/>} />
+        <Route path="notifications" element={<Notification/>} />
+        {/* <Route path="/dash/:id" element={<DashboardView/>} /> */}
         <Route path="/loginpage" element={<Login/>}></Route>
       </Routes>
     </>

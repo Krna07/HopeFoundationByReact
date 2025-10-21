@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import "./login.css";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './UserProvider';
+import axios from 'axios'; // ✅ Added axios
 
 const Login = () => {
   const { userData, setUserData } = useContext(UserContext);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const navigate = useNavigate();
 
-  // ✅ Load API base URL from environment variable (Vite style)
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -19,32 +19,24 @@ const Login = () => {
   const LoginData = async (data) => {
     console.log("From Form:", data);
     try {
-      const res = await fetch(`${API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await axios.post(`${API_URL}/login`, data);
 
-      const response = await res.json();
-      console.log("Response:", response);
-
+      console.log("Response:", response.data);
       reset();
 
-      if (response.message === "Login successful!") {
-        // ✅ Store user info globally if needed
-        setUserData(response);
+      if (response.data.message === "Login successful!") {
+        //  Store user info globally if needed
+        setUserData(response.data);
 
-        // ✅ Navigate to user dashboard
-        navigate(`/dash/${response?.data?._id}`);
+        //  Navigate to user dashboard
+        navigate(`/dash/${response.data?.data?._id}`);
       } else {
-        alert(response.message || "Invalid credentials!");
+        alert(response.data.message || "Invalid credentials!");
       }
 
     } catch (err) {
       console.error("Error:", err);
-      alert("Failed to connect to the server. Please try again later.");
+      alert(err.response?.data?.message || "Failed to connect to the server. Please try again later.");
     }
   };
 
