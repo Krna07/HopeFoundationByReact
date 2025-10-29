@@ -14,34 +14,66 @@ const SignUp = () => {
 
   const API_URL = import.meta.env.VITE_API_URL;
 
+  // const Alldata = async (data) => {
+  //   console.log("Submission on the way.....", data);
+
+  //   try {
+  //     const res = await fetch(`${API_URL}/logged`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+
+  //     const response = await res.json();
+  //     console.log("Data:", response);
+
+  //     reset();
+
+  //     if (response.message === "User logged successfully") {
+  //       navigate("/loginpage");
+  //     } else {
+  //       alert(response.message || "Something went wrong!");
+  //     }
+
+  //   } catch (err) {
+  //     console.error("Error:", err);
+  //     alert("Failed to connect to the server.");
+  //   }
+  // };
+
+
   const Alldata = async (data) => {
-    console.log("Submission on the way.....", data);
+  console.log("Submitting:", data);
 
-    try {
-      const res = await fetch(`${API_URL}/logged`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+  try {
+    const res = await fetch(`${API_URL}/logged`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-      const response = await res.json();
-      console.log("Data:", response);
+    const response = await res.json();
+    console.log("Response:", response);
 
+    if (res.ok) {
+      // ✅ store JWT token in localStorage
+      localStorage.setItem("token", response.token);
+      alert("Signup successful!");
       reset();
-
-      if (response.message === "User logged successfully") {
-        navigate("/loginpage");
-      } else {
-        alert(response.message || "Something went wrong!");
-      }
-
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Failed to connect to the server.");
+      navigate("/loginpage");
+    } else {
+      alert(response.message || "Something went wrong!");
     }
-  };
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Failed to connect to the server.");
+  }
+};
+
 
   return (
     <div className="formbody">

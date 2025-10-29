@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form';
 import "./login.css";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './UserProvider';
-import axios from 'axios'; // ✅ Added axios
-
+import axios from 'axios'; // ✅ Add
 const Login = () => {
   const { userData, setUserData } = useContext(UserContext);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -16,29 +15,63 @@ const Login = () => {
     console.log("Updated Data:", userData);
   }, [userData]);
 
-  const LoginData = async (data) => {
-    console.log("From Form:", data);
-    try {
-      const response = await axios.post(`${API_URL}/login`, data);
+  // const LoginData = async (data) => {
+  //   console.log("From Form:", data);
+  //   try {
+  //     const response = await axios.post(`${API_URL}/login`, data);
 
-      console.log("Response:", response.data);
-      reset();
+  //     console.log("Response:", response.data);
+  //     reset();
 
-      if (response.data.message === "Login successful!") {
-        //  Store user info globally if needed
-        setUserData(response.data);
+  //     if (response.data.message === "Login successful!") {
+  //       //  Store user info globally if needed
+  //       setUserData(response.data);
 
-        //  Navigate to user dashboard
-        navigate(`/dash/${response.data?.data?._id}`);
-      } else {
-        alert(response.data.message || "Invalid credentials!");
-      }
+  //       //  Navigate to user dashboard
+  //       navigate(`/dash/${response.data?.data?._id}`);
+  //     } else {
+  //       alert(response.data.message || "Invalid credentials!");
+  //     }
 
-    } catch (err) {
-      console.error("Error:", err);
-      alert(err.response?.data?.message || "Failed to connect to the server. Please try again later.");
+  //   } catch (err) {
+  //     console.error("Error:", err);
+  //     alert(err.response?.data?.message || "Failed to connect to the server. Please try again later.");
+  //   }
+  // };
+
+
+
+const LoginData = async (data) => {
+  console.log("From Form:", data);
+  try {
+    const response = await axios.post(`${API_URL}/login`, data);
+
+    console.log("Response,bkc, :", response.data);
+
+    if (response.data.message === "Login successful!") {
+      // ✅ Save token securely
+      localStorage.setItem("token", response.data.token);
+      console.log("Token:", response.data.token);
+
+      // ✅ Update global context if needed
+      setUserData(response.data);
+
+      // ✅ Navigate to dashboard using user ID
+      console.log("Navigating to:", `/dash/${response.data.data._id}`);
+      navigate(`/dash/${response.data.data._id}`);
+    } else {
+      alert(response.data.message || "Invalid credentials!");
     }
-  };
+
+    reset();
+
+  } catch (err) {
+    console.error("Error:", err);
+    alert(err.response?.data?.message || "Failed to connect to the server. Please try again later.");
+  }
+};
+
+
 
   return (
     <div className='loginpage'>
