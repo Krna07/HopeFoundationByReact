@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import "./login.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { UserContext } from './UserProvider';
 import axios from 'axios'; // ✅ Add
 const Login = () => {
@@ -44,32 +44,39 @@ const Login = () => {
 const LoginData = async (data) => {
   console.log("From Form:", data);
   try {
-    const response = await axios.post(`${API_URL}/login`, data);
+    const res = await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-    console.log("Response,bkc, :", response.data);
+    const response = await res.json();
+    console.log("Response:", response);
 
-    if (response.data.message === "Login successful!") {
-      // ✅ Save token securely
-      localStorage.setItem("token", response.data.token);
-      console.log("Token:", response.data.token);
+    if (res.ok && response.message === "Login successful!") {
+      // ✅ Save token
+      localStorage.setItem("token", response.token);
+      console.log("Token:", response.token);
 
-      // ✅ Update global context if needed
-      setUserData(response.data);
+      // ✅ Update context
+      setUserData(response);
 
-      // ✅ Navigate to dashboard using user ID
-      console.log("Navigating to:", `/dash/${response.data.data._id}`);
-      navigate(`/dash/${response.data.data._id}`);
+      // ✅ Navigate to dashboard
+      console.log("Navigating to:", `/dash/${response.data._id}`);
+      navigate(`/dash/${response.data._id}`);
     } else {
-      alert(response.data.message || "Invalid credentials!");
+      alert(response.error || response.message || "Invalid credentials!");
     }
 
     reset();
-
   } catch (err) {
     console.error("Error:", err);
-    alert(err.response?.data?.message || "Failed to connect to the server. Please try again later.");
+    alert("Failed to connect to the server. Please try again later.");
   }
 };
+
 
 
 
@@ -103,6 +110,7 @@ const LoginData = async (data) => {
 
         {/* Submit */}
         <button type='submit'>Login</button>
+        <Link to="/needy"><button>Login as Needy</button></Link>
       </form>
     </div>
   );

@@ -11,6 +11,10 @@ import Start from "./components/Start";
 import Dash from "./components/Dash";
 import Analytics from "./components/Analytics";
 import Profile from "./components/Profile";
+import NeedyLogin from "./components/NeedyLogin";
+import NeedySignUp from "./components/NeedySignUp";
+import NeedyDashboard from "./components/NeedyDashboard";
+import NeedyList from "./components/NeedyList";
 
 
 
@@ -35,6 +39,10 @@ function App() {
         <Route path="notifications" element={<Notification/>} />
         {/* <Route path="/dash/:id" element={<DashboardView/>} /> */}
         <Route path="/loginpage" element={<Login/>}></Route>
+        <Route path="/needy" element={<NeedyLogin/>}></Route>
+        <Route path="/needy_sign" element={<NeedySignUp/>}></Route>
+        <Route path="/needy-dashboard" element={<NeedyDashboard/>}></Route>
+        <Route path="/needies" element={<NeedyList/>}></Route>
       </Routes>
     </>
   )

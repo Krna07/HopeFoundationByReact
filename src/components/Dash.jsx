@@ -121,6 +121,9 @@ const Dash = () => {
                 <Link to="/donate">💰 Donate Now</Link>
               </li>
               <li>
+                <Link to="/needies">🌍 Registered Needies</Link>
+              </li>
+              <li>
                 <Link to="/settings">⚙️ Settings</Link>
               </li>
             </ul>

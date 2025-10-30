@@ -1,5 +1,5 @@
 import React, { useContext, useState , useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../App.css";
 import { UserContext } from "./UserProvider";
 import { useNavigate } from "react-router-dom";
