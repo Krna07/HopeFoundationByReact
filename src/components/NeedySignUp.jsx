@@ -25,7 +25,6 @@ const NeedySignUp = () => {
       } else {
         alert(response.error || "Registration Failed");
       }
-
     } catch (err) {
       console.error(err);
       alert("Server error, try again!");
@@ -50,6 +49,30 @@ const NeedySignUp = () => {
               placeholder="Enter your name"
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block font-medium">Email</label>
+            <input
+              type="email"
+              {...register("email", { required: "Email is required" })}
+              className="w-full border p-2 rounded"
+              placeholder="Enter email"
+            />
+            {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block font-medium">Password</label>
+            <input
+              type="password"
+              {...register("password", { required: "Password is required" })}
+              className="w-full border p-2 rounded"
+              placeholder="Enter password"
+            />
+            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
 
           {/* Phone */}
@@ -98,6 +121,9 @@ const NeedySignUp = () => {
             />
             {errors.address && <p className="text-red-500 text-sm">{errors.address.message}</p>}
           </div>
+
+          {/* Hidden role */}
+          <input type="hidden" value="Needy" {...register("role")} />
 
           <button 
             type="submit"

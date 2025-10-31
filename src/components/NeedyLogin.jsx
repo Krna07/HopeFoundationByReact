@@ -3,12 +3,17 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useContext } from "react";
+import { UserContext } from "./UserProvider.jsx";
 
 const NeedyLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+
+  const {userData, setUserData} = useContext(UserContext);
+  console.log(userData?.data)
 
   const { register, handleSubmit, formState: { errors }} = useForm();
 
@@ -19,13 +24,16 @@ const NeedyLogin = () => {
     setErrorMsg("");
 
     try {
-      const res = await fetch(`${API_URL}/login`, {
+      const res = await fetch(`${API_URL}/needylogin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, role: "Needy" }) // force role needy
       });
 
       const out = await res.json();
+      setUserData(out);
+      
+
       if (!res.ok) {
         setErrorMsg(out.message || "Invalid Credentials");
       } else {
@@ -106,7 +114,14 @@ const NeedyLogin = () => {
         </p>
 
         <p className="text-xs text-center text-gray-500 mt-2">
-          *Needy login only — donors use donor login page
+          *Needy login only — donors use donor login page <br />
+           Demo Login Credentials: <br />
+          <b>
+            <i>
+              Email:bhargavi@gmail.com <br />
+              Password: 1234567890
+            </i>
+          </b>
         </p>
       </form>
     </div>
