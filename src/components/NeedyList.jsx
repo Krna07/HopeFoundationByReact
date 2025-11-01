@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "./UserProvider.jsx";
 
 const NeedyList = () => {
   const API_URL = import.meta.env.VITE_API_URL;
-
   const [needy, setNeedy] = useState([]);
   const [filtered, setFiltered] = useState([]);
 
@@ -13,6 +14,58 @@ const NeedyList = () => {
   const [dark, setDark] = useState(false);
 
   const [selected, setSelected] = useState(null);
+  const { userData } = useContext(UserContext);
+
+  console.log("Needy Info:",needy);
+
+  const handleDonate = async (needyId) => {
+  const amt = prompt("Enter donation amount ₹");
+
+  if (!amt || isNaN(amt)) {
+    return alert("❌ Enter a valid amount");
+  }
+
+  if (!userData || !userData.data || !userData.data._id) {
+    alert("⚠️ Please login to donate");
+    return window.location.href = "/loginpage";
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/alldonation`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify({
+        donatedBy: userData.data._id, // ✅ Donor ID
+        donatedTo: needyId, // ✅ Needy ID
+        amount: amt
+      }),
+    });
+
+    const result = await res.json();
+
+    if (result.message === "Donation recorded") {
+      alert("✅ Donation recorded successfully!");
+    }
+    else if (result.message === "Donation updated (amount added)") {
+      alert("✅ Donation updated successfully!");
+    }
+    else {
+      alert("❌ Donation failed");
+    }
+
+  } catch (error) {
+    console.log(error);
+    alert("Server error 😥");
+  }
+};
+
+
+
+
+
 
   useEffect(() => {
     fetchNeedy();
@@ -53,8 +106,9 @@ const NeedyList = () => {
     setFiltered(list);
   }, [search, maxIncome, sortType, needy]);
 
-  if (loading)
+  if (loading){
     return <p className="text-center mt-10 text-gray-600">Loading...</p>;
+  }
 
   return (
     <div className={`${dark ? "bg-slate-900 text-white" : "bg-blue-50"} min-h-screen p-6`}>
@@ -138,10 +192,7 @@ const NeedyList = () => {
                 View Story
               </button>
               <button
-                onClick={() => {
-                  const amt = prompt("Enter donation amount ₹");
-                  if (amt) alert(`Donation recorded: ₹${amt}`);
-                }}
+                onClick={() => handleDonate(p._id)}
                 className="flex-1 px-4 py-3 text-sm bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors duration-200 shadow-md"
               >
                 Donate

@@ -13,8 +13,6 @@ const NeedyLogin = () => {
   const navigate = useNavigate();
 
   const {userData, setUserData} = useContext(UserContext);
-  console.log(userData?.data)
-
   const { register, handleSubmit, formState: { errors }} = useForm();
 
   const API_URL = import.meta.env.VITE_API_URL;
